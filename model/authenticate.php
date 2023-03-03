@@ -18,7 +18,7 @@
             $error = "<p>Benutzername ist nicht registriert!</p>";
             return;
         }
-
+        
         if (!password_verify($_POST["password"], $result["password"])) {
             $error = "<p>falsches Passwort eingegeben</p>";
             return;

@@ -38,21 +38,21 @@
 
     // image umbennen und in den vorgesehenen verzeichnis verschieben | image name ist aktuelle zeit = microtime()
     $destinationFile = microtime();
-    if (!move_uploaded_file($fileInformation["tmp_name"], "uploads/" . $destinationFile)) {
+    if (!move_uploaded_file($fileInformation["tmp_name"], "resources/uploads/" . $destinationFile)) {
         $error = "Datei könnte nicht hochgeladen werden";
         return;
     }
 
     $image = null;
     if ($imageType == "image/png") {
-        $image = imagecreatefrompng("uploads/" . $destinationFile);
+        $image = imagecreatefrompng("resources/uploads/" . $destinationFile);
     } elseif ($imageType == "image/jpeg") {
-        $image = imagecreatefromjpeg("uploads/" . $destinationFile);
+        $image = imagecreatefromjpeg("resources/uploads/" . $destinationFile);
     } elseif ($imageType == "image/webp") {
-        $image = imagecreatefromwebp("uploads/" . $destinationFile);
+        $image = imagecreatefromwebp("resources/uploads/" . $destinationFile);
     }
 
     // image scalieren für einen thumbnail und speichern
     $scaledImage = imagescale($image, 128);
 
-    imagewbmp($scaledImage, "uploads/thumbnails/" . $destinationFile, 0);
+    imagewbmp($scaledImage, "resources/uploads/thumbnails/" . $destinationFile, 0);
