@@ -1,39 +1,31 @@
 <?php
-    class Posts {
-        public $tableName;
-
-        function __construct($tableName) {
-            $this->tableName = $tableName;
-        }
-
+    class Like {
         public function select() {
             global $dbconnect;
-            // $data = "";
 
             $dbconnect->beginTransaction();
-            $query = "SELECT * FROM " . $this->tableName;
+            $query = "SELECT count(id) FROM likes";
             $result = $dbconnect->prepare($query);
             $result->execute();
 
             $indexIgnor = $result->setFetchMode(PDO::FETCH_ASSOC);
             foreach ($result as $value) {
-                $data[] = $value;
+                $data = $value;
             }
 
             $dbconnect->commit();
             return $data;
         }
 
-        public function insert($name, $path, $thumbnail) {
+        public function insert($userId, $postId) {
             global $dbconnect;
 
             $dbconnect->beginTransaction();
-            $query = "INSERT INTO " . $this->tableName . "(name, path, thumbnail) VALUES(?,?,?)";
+            $query = "INSERT INTO likes(user_id, post_id) VALUES(?,?)";
             $statement = $dbconnect->prepare($query);
 
-            $statement->bindParam(1, $name, PDO::PARAM_STR);
-            $statement->bindParam(2, $thumbnail, PDO::PARAM_STR);
-            $statement->bindParam(3, $path, PDO::PARAM_STR);
+            $statement->bindParam(1, $userId, PDO::PARAM_INT);
+            $statement->bindParam(2, $postId, PDO::PARAM_INT);
             $statement->execute();
 
             $dbconnect->commit();

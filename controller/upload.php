@@ -3,6 +3,9 @@
     ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
 
+    require "model/database.php";
+    require_once "model/Posts.php";
+
     if (!isset($_POST["submit"])) {
         return;
     }
@@ -56,3 +59,12 @@
     $scaledImage = imagescale($image, 128);
 
     imagewbmp($scaledImage, "resources/uploads/thumbnails/" . $destinationFile, 0);
+
+    try {
+        $table = new Posts("posts");
+        $table->insert($destinationFile, "resources/uploads/thumbnails/".$destinationFile, "resources/uploads/".$destinationFile);
+    } catch (Exception $exception) {
+        $error = "<p>Benutzername ist nicht registriert! " . $exception->getMessage() . "</p>";
+        $dbconnect->rollBack();
+        die();
+    }

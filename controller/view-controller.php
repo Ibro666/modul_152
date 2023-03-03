@@ -7,3 +7,5 @@
     } else {
         $loginBtn = '<a href="view/login.php" class="login-button">Anmelden</a>';
     }
+
+    

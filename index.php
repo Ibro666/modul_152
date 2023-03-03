@@ -49,32 +49,17 @@
 					<input type="file"  name="image" accept="image/png,image/jpeg,image/webp"><!--imagefileformat client seitig begrenzen-->
 					<button type="submit" name="submit">Upload</button>
 				</form>
-				
-				<picture>
-					<source srcset="" media="(max-width: 800px)">
-					<img src="model\images\test-adam-kool.webp" alt="Das Bild symbolisiert eine landschaft." loading="lazy" onload="loadFullImage(event);">
-				</picture>
 			</div>
-			<div class="post-data">
-				<div class="like-btn">
-					<button type="submit" name="like">like</button>
-				</div>
-				<div class="metadata">
-					<p>autor</p>
-				</div>
-			</div>
-			<div class="coment-content">
-				<textarea name="coment" id="coment" cols="30" rows="10" placeholder="Kommentar"></textarea>
-				<button type="submit" name="post-coment">Senden</button>
-			</div>
+			<?php require "controller/output.php"?>
+			
 
 
 			<div class="title-blog-container">
 				<figure>
 					<picture>
 						<source srcset="" media="">
-						<img src="Model\bilder\Politik.svg" alt="mehrere Menschen, die sich Unterhalten" title="Politok" loading="lazy">
-						<figcaption>Politok! ein Thema dass nicht weggelassen werden kann</figcaption>
+						<img src="Model\bilder\Politik.svg" alt="" title="Politok" loading="lazy">
+						<figcaption></figcaption>
 					</picture>
 				</figure>
 			</div>

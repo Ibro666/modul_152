@@ -1,7 +1,6 @@
 <?php
     require "database.php";
     require_once "Table.php";
-    require "../controller/view-controller.php";
 
     if (!isset($_SESSION["expiration"]) || $_SESSION["expiration"] < time()) {
         header("Location: ../index.php");
@@ -28,7 +27,7 @@
         //     return;
         // } 
         else {
-            setcookie("user-id", $result["user_id"]);
+            $_SESSION["user_id"] = $result["user_id"];
             header("Location: ../index.php");
         }
     } catch (Exception $exception) {
