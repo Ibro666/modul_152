@@ -1,9 +1,9 @@
 <?php
-    session_start();
-    $_SESSION["expiration"] = time() + 3600;
-
     if (!isset($_POST["submit"])) {
         return;
+    } else {
+        session_start();
+        $_SESSION["expiration"] = time() + 3600;
     }
 
     if (!isset($_POST["username"]) || empty($_POST["username"])) {
@@ -19,3 +19,5 @@
     }
 
     require_once "../model/authenticate.php";
+
+    require "view-controller.php";

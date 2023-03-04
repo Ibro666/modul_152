@@ -14,6 +14,6 @@
         <button type="submit" name="submit">Sumbit</button>
     </form>
 
-    <?php require_once "../controller/upload1.php" ?>
+    <?php require_once "../controller/upload.php" ?>
 </body>
 </html>

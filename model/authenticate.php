@@ -5,9 +5,9 @@
     if (!isset($_SESSION["expiration"]) || $_SESSION["expiration"] < time()) {
         header("Location: ../index.php");
         die();
-    } else {
-        $_SESSION["expiration"] = time() + 3600;
     }
+    
+    $_SESSION["expiration"] = time() + 3600;
 
     try {
         $userTable = new Table("users");
@@ -17,10 +17,9 @@
             $error = "<p>Benutzername ist nicht registriert!</p>";
             return;
         }
-
+        
         if (!password_verify($_POST["password"], $result["password"])) {
-            echo "<p>falsches Passwort eingegeben</p>";
-            echo $_POST["password"], $result["password"];
+            $error = "<p>falsches Passwort eingegeben</p>";
             return;
         }
         // if ($_POST["password"] != $result["password"]) {
@@ -28,12 +27,11 @@
         //     return;
         // } 
         else {
-            setcookie("user-id", $result["user_id"]);
-            
+            $_SESSION["user_id"] = $result["user_id"];
             header("Location: ../index.php");
         }
     } catch (Exception $exception) {
         $error = "<p>Benutzername ist nicht registriert! " . $exception->getMessage() . "</p>";
         $dbconnect->rollBack();
         die();
-    }    
+    }

@@ -2,7 +2,7 @@
 	$loginBtn = "";
 	
 	require "controller/view-controller.php";
-
+	require "controller/upload.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,17 +10,17 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>PinPostMedia</title>
-	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-	<link rel="manifest" href="favicon/site.webmanifest">
-	<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png">
+	<link rel="manifest" href="resources/favicon/site.webmanifest">
+	<link rel="mask-icon" href="resources/favicon/safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="apple-mobile-web-app-title" content="PinPostMedia">
 	<meta name="application-name" content="PinPostMedia">
 	<meta name="msapplication-TileColor" content="#2d89ef">
 	<meta name="theme-color" content="#ffffff">
 	<link rel="stylesheet" type="text/css" href="view/stylesheets/style.css">
-	<script src="layz-loader.js"></script>
+	<script src="controller/layz-loader.js"></script>
 	<header>
 		<div id="error-messages">
 			
@@ -44,35 +44,22 @@
 	<div class="container-content">
 		<div class="content">
 			<div class="post-content">
-				<form method="POST" action="controller/upload.php" enctype="multipart/form-data">
-					<input type="file" name="datei">
-					<button type="submit">Upload</button>
+				<form method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="MAX_FILE_SIZE" value="5000000"><!--Client seitige datei grössen limitierung-->
+					<input type="file"  name="image" accept="image/png,image/jpeg,image/webp"><!--imagefileformat client seitig begrenzen-->
+					<button type="submit" name="submit">Upload</button>
 				</form>
-				<picture>
-					<source srcset="" media="(max-width: 800px)">
-					<img src="model\images\test-adam-kool.webp" alt="Das Bild symbolisiert eine landschaft." loading="lazy" onload="loadFullImage(event);">
-				</picture>
 			</div>
-			<div class="post-data">
-				<div class="like-btn">
-					<button type="submit" name="like">like</button>
-				</div>
-				<div class="metadata">
-					<p>autor</p>
-				</div>
-			</div>
-			<div class="coment-content">
-				<textarea name="coment" id="coment" cols="30" rows="10" placeholder="Kommentar"></textarea>
-				<button type="submit" name="post-coment">Senden</button>
-			</div>
+			<?php require "controller/output.php"?>
+			
 
 
 			<div class="title-blog-container">
 				<figure>
 					<picture>
 						<source srcset="" media="">
-						<img src="Model\bilder\Politik.svg" alt="mehrere Menschen, die sich Unterhalten" title="Politok" loading="lazy">
-						<figcaption>Politok! ein Thema dass nicht weggelassen werden kann</figcaption>
+						<img src="Model\bilder\Politik.svg" alt="" title="Politok" loading="lazy">
+						<figcaption></figcaption>
 					</picture>
 				</figure>
 			</div>
