@@ -1,5 +1,6 @@
 <?php 
 	$loginBtn = "";
+	$error = "";
 	
 	require "controller/view-controller.php";
 	require "controller/upload.php";
@@ -23,7 +24,7 @@
 	<script src="controller/layz-loader.js"></script>
 	<header>
 		<div id="error-messages">
-			
+			<?php echo $error?>
 		</div>
 	</header>
 </head>

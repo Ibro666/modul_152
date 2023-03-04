@@ -1,7 +1,9 @@
 <?php
+    // session_start();
+    $_SESSION["expiration"] = time() + 3600;
+
     require "model/database.php";
     require_once "model/Posts.php";
-    require_once "model/Like.php";
 
     try {
         $table = new Posts("posts");
@@ -15,9 +17,10 @@
             echo	'</picture>';
             echo '</div>';
             echo '<div class="post-data">';
-            echo    '<form method="GET">';
+            echo    '<form method="GET" action="likesController.php">';
             echo	    '<div class="like-btn">';
-            echo            '<a href="likesController.php?' . $value["post_id"] . '"';
+            // echo            '<a href="likesController.php?post_id=' . $value["post_id"] . '">Like</a>';
+            echo            '<button type="submit" name="post_id" value="' . $value["post_id"] . '">Like</button>';
             echo	    '</div>';
             echo    '</form>';
             echo	'<div class="metadata">';

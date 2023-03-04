@@ -12,7 +12,7 @@
 
     // prüefen ob es sich um einen imagefile handelt
     if (!isset($_FILES["image"])) {
-        echo "Please uplaod an image file!";
+        $error = "Das ausgewählte Datei ist kein Bilddatei";
         // return;
     }
 
@@ -21,7 +21,7 @@
 
     // upload file grösse serverseitig begrenzen
     if ($fileInformation["size"] > 5000000) {
-        echo "The file is too big! The maxium file size is 50 MB!";
+        $error = "Ausgewehlte Datei ist zugross! Maximale Dateigrösse beträgt 50 MB!";
         return;
     }
     
@@ -32,7 +32,7 @@
     // dateiformat der image aus dem gelesenen igame holen und mit dem png, jpg, und webp vergleichen wenn nicht übereinstimmt fehlermeldung ausgeben.
     $imageType = mime_content_type($fileInformation["tmp_name"]);
     if (!in_array($imageType, array("image/png" ,"image/jpeg", "image/webp"))) {
-        echo "Dateiformat ist nicht akzeptabel";
+        $error = "Dateiformat wird nicht unterstützt";
         return;
     }
     
