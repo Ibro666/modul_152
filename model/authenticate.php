@@ -21,12 +21,7 @@
         if (!password_verify($_POST["password"], $result["password"])) {
             $error = "<p>falsches Passwort eingegeben</p>";
             return;
-        }
-        // if ($_POST["password"] != $result["password"]) {
-        //     $error = "<p>falsches Passwort!</p>";
-        //     return;
-        // } 
-        else {
+        } else {
             $_SESSION["user_id"] = $result["user_id"];
             header("Location: ../index.php");
         }

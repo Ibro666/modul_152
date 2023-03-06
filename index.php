@@ -2,7 +2,7 @@
 	$loginBtn = "";
 	$error = "";
 	
-	require "controller/view-controller.php";
+	require "controller/indexController.php";
 	require "controller/upload.php";
 ?>
 <!DOCTYPE html>
@@ -21,19 +21,19 @@
 	<meta name="msapplication-TileColor" content="#2d89ef">
 	<meta name="theme-color" content="#ffffff">
 	<link rel="stylesheet" type="text/css" href="view/stylesheets/style.css">
-	<script src="controller/layz-loader.js"></script>
-	<header>
-		<div id="error-messages">
-			<?php echo $error?>
-		</div>
-	</header>
+	<script src="controller/lazy-loader.js"></script>
 </head>
+<header>
+	<div id="error-messages">
+		<?php echo $error?>
+	</div>
+</header>
 <body>
 	<nav>
 		<ul>
 			<li><a href="index.php" class="active">Home</a></li>
-			<li class="dropdown"><a href="#">Posten</a></li>
-			<li class="dropdown"><a href="#">Gallerie</a></li>
+			<li class="dropdown"><a href="fileUpload.php">Posten</a></li>
+			<li class="dropdown"><a href="gallery.php">Gallerie</a></li>
 			<li><a href="#">Über Uns</a></li>
 			<li class="dropdown-right-btns"><?php echo $loginBtn?>
 				<div class="dropdown-content">
@@ -44,17 +44,10 @@
 	</nav>
 	<div class="container-content">
 		<div class="content">
+			<h1>PinPostMedia</h1>
 			<div class="post-content">
-				<form method="POST" enctype="multipart/form-data">
-					<input type="hidden" name="MAX_FILE_SIZE" value="5000000"><!--Client seitige datei grössen limitierung-->
-					<input type="file"  name="image" accept="image/png,image/jpeg,image/webp"><!--imagefileformat client seitig begrenzen-->
-					<button type="submit" name="submit">Upload</button>
-				</form>
 			</div>
-			<?php require "controller/output.php"?>
-			
-
-
+				<?php require "controller/output.php"?>
 			<div class="title-blog-container">
 				<figure>
 					<picture>
@@ -64,7 +57,7 @@
 					</picture>
 				</figure>
 			</div>
-   		</div>
+		</div>
 		<div class="content">
 			<video src="" controls></video>
 		</div>

@@ -24,6 +24,42 @@
             return $data;
         }
 
+        public function selectLikeCount($postId) {
+            global $dbconnect;
+            $data = null;
+
+            $dbconnect->beginTransaction();
+            $query = "SELECT count(user_id) FROM posts INNER JOIN likes ON posts.post_id = likes.post_id WHERE posts.post_id=" . $postId;
+            $result = $dbconnect->prepare($query);
+            $result->execute();
+
+            $indexIgnor = $result->setFetchMode(PDO::FETCH_ASSOC);
+            foreach ($result as $value) {
+                $data = $value;
+            }
+
+            $dbconnect->commit();
+            return $data;
+        }
+
+        public function selectComments($postId) {
+            global $dbconnect;
+            $data = null;
+
+            $dbconnect->beginTransaction();
+            $query = "SELECT description FROM posts INNER JOIN comments AS c ON posts.post_id = c.post_id WHERE c.post_id=" . $postId;
+            $result = $dbconnect->prepare($query);
+            $result->execute();
+
+            $indexIgnor = $result->setFetchMode(PDO::FETCH_ASSOC);
+            foreach ($result as $value) {
+                $data = $value;
+            }
+
+            $dbconnect->commit();
+            return $data;
+        }
+
         public function insert($name, $path, $thumbnail) {
             global $dbconnect;
 

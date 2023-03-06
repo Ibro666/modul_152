@@ -11,13 +11,13 @@
     }
 
     // prüefen ob es sich um einen imagefile handelt
-    if (!isset($_FILES["image"])) {
-        $error = "Das ausgewählte Datei ist kein Bilddatei";
-        // return;
+    if (!isset($_FILES["file"])) {
+        $error = "Fügen Sie ein Datei hinzu!";
+        return;
     }
 
     // alle informationen aus dem upload file holen 
-    $fileInformation = $_FILES["image"];
+    $fileInformation = $_FILES["file"];
 
     // upload file grösse serverseitig begrenzen
     if ($fileInformation["size"] > 5000000) {
@@ -27,15 +27,27 @@
     
     // verzeichnisse zur speicherung der upload files verzeuchen und berechtigungen vergeben
     // mkdir("../resources/uploads", 0777);
-    // mkdir("../resources/thumbnails", 0777);
+    // mkdir("../resources/uploads/thumbnails", 0777);
+    // mkdir("../resources/uploads/compresions", 0777);
 
-    // dateiformat der image aus dem gelesenen igame holen und mit dem png, jpg, und webp vergleichen wenn nicht übereinstimmt fehlermeldung ausgeben.
+    // dateiformat der image aus dem gelesenen image holen und mit dem png, jpg, und webp vergleichen wenn nicht übereinstimmt fehlermeldung ausgeben.
     $imageType = mime_content_type($fileInformation["tmp_name"]);
-    if (!in_array($imageType, array("image/png" ,"image/jpeg", "image/webp"))) {
-        $error = "Dateiformat wird nicht unterstützt";
+    if (!in_array($imageType, array("image/png" ,"image/jpeg", "image/webp", "image/gif", "video/mp4", "video/webm", "audio/mp3", "audio/wav"))) {
+        $error = "Das ausgewählte Dateiformat wird nicht unterstützt";
         return;
     }
-    
+
+    if ($imageType == "video/mp4" || $imageType == "video/webm") {
+        if (!move_uploaded_file($fileInformation["tmp_name"], "resources/uploads/videos/" . $fileInformation["name"])) {
+            $error = "Datei könnte nicht hochgeladen werden";
+        }
+    }
+
+    if ($imageType == "audio/mp3" || $imageType == "audio/wav") {
+        if (!move_uploaded_file($fileInformation["tmp_name"], "resources/uploads/audios/" . $fileInformation["name"])) {
+            $error = "Datei könnte nicht hochgeladen werden";
+        }
+    }
     // image in den vorgesehenen verzeichnis verschieben
     // move_uploaded_file($fileInformation["tmp_name"], "../uploads/" . microtime());
 
@@ -46,6 +58,7 @@
         return;
     }
 
+    // hoch geladene datei mit entsprechenden dateiformat speichern
     $image = null;
     if ($imageType == "image/png") {
         $image = imagecreatefrompng("resources/uploads/" . $destinationFile);
@@ -53,13 +66,28 @@
         $image = imagecreatefromjpeg("resources/uploads/" . $destinationFile);
     } elseif ($imageType == "image/webp") {
         $image = imagecreatefromwebp("resources/uploads/" . $destinationFile);
+    } elseif ($imageType == "image/gif") {
+        $image = imagecreatefromgif("resources/uploads/" . $destinationFile);
     }
 
-    // image scalieren für einen thumbnail und speichern
+    // image scalieren für einen thumbnail und mit dem dateiformat webp als 0% kompresion speichern
     $scaledImage = imagescale($image, 128);
 
-    imagewbmp($scaledImage, "resources/uploads/thumbnails/" . $destinationFile, 0);
+    // ob_start();
+    // imagewebp($scaledImage, "resources/uploads/thumbnails/" . $destinationFile, 0);
+    // if (ob_get_length() % 2 == 1) {
+    // echo "\0";
+    // }
+    // ob_end_flush();
 
+    imagepng($scaledImage, "resources/uploads/thumbnails/" . $destinationFile, 0);
+    // if (filesize('test_img.webp') % 2 == 1) {
+    //     file_put_contents('test_img.webp', "\0", FILE_APPEND);
+    // }
+
+    // imagewebp($image, "resources/uploads/compresions/" . $destinationFile, 0);
+
+    // die pfäder der gespeicherten medien in die datenbank eintragen
     try {
         $table = new Posts("posts");
         $table->insert($destinationFile, "resources/uploads/thumbnails/".$destinationFile, "resources/uploads/".$destinationFile);
