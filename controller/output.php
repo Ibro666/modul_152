@@ -34,35 +34,96 @@
             }
             
             // das post-content wird gestaltet und zusammen mit dem likes und comments ausgegeben.
-            echo '<div class="picture-content">';
-            echo	'<picture>';
-            echo		'<source srcset="' . $value["path"] . '" media="(max-width: 800px)">';
-            echo		'<img src="' . $value["path"] . '" loading="lazy" onload="loadFullImage(event);">';
-            echo	'</picture>';
-            echo '</div>';
-            echo '<div class="post-data">';
-            if (isset($_SESSION["username"])) {
-                echo	'<div class="like-btn">';
-                echo        '<form method="GET" action="likesController.php">';
-                // echo            '<a href="likesController.php?post_id=' . $value["post_id"] . '">Like</a>';
-                echo            '<button type="submit" name="post_id" value="' . $value["post_id"] . '">Like ' . $likeCount . ' </button>';
-                echo        '</form>';
+            if ($value["thumbnail"] == "0") {
+                echo '<div class="move-content">';
+			    echo    '<video src="' . $value["path"] . '" controls></video>';
+		        echo '</div>';
+
+                echo '<div class="post-data">';
+                if (isset($_SESSION["username"])) {
+                    echo	'<div class="like-btn">';
+                    echo        '<form method="GET" action="likesController.php">';
+                    echo            '<button type="submit" name="post_id" value="' . $value["post_id"] . '">Like ' . $likeCount . ' </button>';
+                    echo        '</form>';
+                    echo	'</div>';
+                }
+                echo	'<div class="metadata">';
+                echo		'<p>license</p>';
+                echo		'<p>autor</p>';
                 echo	'</div>';
-            }
-            echo	'<div class="metadata">';
-            echo		'<p>autor</p>';
-            echo	'</div>';
-            echo '</div>';
-            if (isset($_SESSION["username"])) {
-                echo '<div class="coment-content">';
-                echo    '<form method="GET" action="commentController.php">';
-                echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar"></textarea>';
-                echo        '<div>';
-                echo            $comments;
-                echo        '</div>';
-                echo	    '<button type="submit" name="post-comment" value="' . $value["post_id"] . '">Senden</button>';
-                echo    '</form>';
+                echo	'<div class="date">';
+                echo		'<p>date</p>';
+                echo	'</div>';
                 echo '</div>';
+                if (isset($_SESSION["username"])) {
+                    echo '<div class="coment-content">';
+                    echo    '<form method="GET" action="commentController.php">';
+                    echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar"></textarea>';
+                    echo        '<div>';
+                    echo            $comments;
+                    echo        '</div>';
+                    echo	    '<button type="submit" name="post-comment" value="' . $value["post_id"] . '">Senden</button>';
+                    echo    '</form>';
+                    echo '</div>';
+                }
+            } elseif ($value["thumbnail"] == "1") {
+                echo '<div class="audio-content">';
+			    echo    '<audio src="' . $value["path"] . '" controls></audio>';
+		        echo '</div>';
+
+                echo '<div class="post-data">';
+                if (isset($_SESSION["username"])) {
+                    echo	'<div class="like-btn">';
+                    echo        '<form method="GET" action="likesController.php">';
+                    echo            '<button type="submit" name="post_id" value="' . $value["post_id"] . '">Like ' . $likeCount . ' </button>';
+                    echo        '</form>';
+                    echo	'</div>';
+                }
+                echo	'<div class="metadata">';
+                echo		'<p>autor</p>';
+                echo	'</div>';
+                echo '</div>';
+                if (isset($_SESSION["username"])) {
+                    echo '<div class="coment-content">';
+                    echo    '<form method="GET" action="commentController.php">';
+                    echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar"></textarea>';
+                    echo        '<div>';
+                    echo            $comments;
+                    echo        '</div>';
+                    echo	    '<button type="submit" name="post-comment" value="' . $value["post_id"] . '">Senden</button>';
+                    echo    '</form>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<div class="picture-content">';
+                echo	'<picture>';
+                echo		'<source srcset="' . $value["path"] . '" media="(max-width: 800px)">';
+                echo		'<img src="' . $value["path"] . '" loading="lazy" onload="loadFullImage(event);">';
+                echo	'</picture>';
+                echo '</div>';
+                echo '<div class="post-data">';
+                if (isset($_SESSION["username"])) {
+                    echo	'<div class="like-btn">';
+                    echo        '<form method="GET" action="likesController.php">';
+                    echo            '<button type="submit" name="post_id" value="' . $value["post_id"] . '">Like ' . $likeCount . ' </button>';
+                    echo        '</form>';
+                    echo	'</div>';
+                }
+                echo	'<div class="metadata">';
+                echo		'<p>autor</p>';
+                echo	'</div>';
+                echo '</div>';
+                if (isset($_SESSION["username"])) {
+                    echo '<div class="coment-content">';
+                    echo    '<form method="GET" action="commentController.php">';
+                    echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar"></textarea>';
+                    echo        '<div>';
+                    echo            $comments;
+                    echo        '</div>';
+                    echo	    '<button type="submit" name="post-comment" value="' . $value["post_id"] . '">Senden</button>';
+                    echo    '</form>';
+                    echo '</div>';
+                }
             }
         }
 

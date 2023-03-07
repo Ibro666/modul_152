@@ -31,8 +31,8 @@
     <nav>
 		<ul>
 			<li><a href="index.php" class="active">Home</a></li>
-			<li class="dropdown"><a href="#">Posten</a></li>
-			<li class="dropdown"><a href="#">Gallerie</a></li>
+			<li class="dropdown"><a href="fileUpload.php">Posten</a></li>
+			<li class="dropdown"><a href="gallery.php">Gallerie</a></li>
 			<li><a href="#">Über Uns</a></li>
 			<li class="dropdown-right-btns"><?php echo $loginBtn?>
 				<div class="dropdown-content">

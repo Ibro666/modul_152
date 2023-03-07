@@ -118,7 +118,7 @@ nav .dropdown-right-btns:hover .dropdown-content {
     height: 70%;
 }
 
-form .text-field {
+form .text-field, .file-input-field {
     display: inline-block;
     width: 90%;
     height: 16%;
@@ -230,6 +230,7 @@ form .link-field {
 .coment-content textarea {
     width: 80%;
     height: 20%;
+    overflow: auto;
 }
 
 .coment-content button {
@@ -344,6 +345,48 @@ img {
     border-radius: 3px;
     object-fit: cover;
 }
+
+/* uploadpage */
+.file-input-field input {
+    background-color: rgb(250, 255, 255);
+}
+
+.src-info-content {
+    position: relative;
+    display: inline-block;
+}
+
+.licenses-dropdown {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    width: 96%;
+    margin: 1%;
+    padding: 1%;
+}
+
+select {
+    font-size: 20px;
+}
+
+.url-field {
+    grid-area: 2 / span 2;
+}
+
+/* .license-row {
+    display: grid;
+    grid-template-columns: repeat(1, 2fr 1fr);
+    margin: 1;
+}
+
+.license-row label {
+    width: 150px;
+}
+
+.src-info-content:hover .licenses-dropdown {
+    display: block;
+} */
 
 @media(max-width: 600px) {
     .lightbox {

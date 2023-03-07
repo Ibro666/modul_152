@@ -3,7 +3,6 @@
 	$error = "";
 	
 	require "controller/indexController.php";
-	require "controller/upload.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,18 +47,6 @@
 			<div class="post-content">
 			</div>
 				<?php require "controller/output.php"?>
-			<div class="title-blog-container">
-				<figure>
-					<picture>
-						<source srcset="" media="">
-						<img src="Model\bilder\Politik.svg" alt="" title="Politok" loading="lazy">
-						<figcaption></figcaption>
-					</picture>
-				</figure>
-			</div>
-		</div>
-		<div class="content">
-			<video src="" controls></video>
 		</div>
 		<a href="#header">zum Anfang</a>
 	</div>

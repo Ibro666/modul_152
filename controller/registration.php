@@ -34,7 +34,7 @@
         $userTable = new Table("users");
         $userTable->insert($_POST["username"], password_hash($_POST["password"], PASSWORD_DEFAULT));
 
-        $message = "<p>Registration war erfolgreich";
+        $message = "<p>Registration war erfolgreich</p>";
     } catch (Exception $exception) {
         $error = "<p>Bei der Verbindung ist ein Fehler aufgetretten, melden Sie sich bei der Support!</p>";
         $dbconnect->rollBack();

@@ -1,6 +1,9 @@
 <?php 
 	$loginBtn = "";
 	$error = "";
+
+    require_once "controller/upload.php";
+    require "controller/indexController.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,10 +45,32 @@
     <div class="column">
         <div class="window-middle-part">
             <div class="title-login"><h1>File-Upload</h1></div>
-            <form method="POST" enctype="multipart/form-data">
-                <div class="text-field">
+            <form method="POST" id="file-upload" enctype="multipart/form-data">
+                <div class="file-input-field">
                     <input type="hidden" name="MAX_FILE_SIZE" value="5000000"><!--Client seitige datei grössen limitierung-->
-                    <input type="file"  name="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm,audio/mp3,audio/wav" required><!--imagefileformat client seitig begrenzen-->
+                    <input type="file"  name="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm,audio/*" required><!--imagefileformat client seitig begrenzen-->
+                </div>
+                <div class="text-field">
+                    <div class="src-info-content">
+                        <div class="licenses-dropdown">
+                            <select name="licences" id="licences" form="file-upload" required>
+                                <option selected disabled>Lizenz wählen</option>
+                                <option value="copyright">&copy;</option>
+                                <option value="cc">CC</option>
+                                <option value="by">BY</option>
+                                <option value="nc">NC</option>
+                                <option value="no">NO</option>
+                                <option value="sa">SA</option>
+                                <option value="cc0">Public Domain</option>
+                            </select>
+                            <div>
+                                <input type="text" name="autor">
+                            </div>
+                            <div class="url-field">
+                                <input type="url" name="url">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="button-field">
                      <button type="submit" name="submit">Upload</button>
@@ -59,6 +84,5 @@
 	<footer>
 		
 	</footer>
-    <?php require_once "../controller/upload.php" ?>
 </body>
 </html>
