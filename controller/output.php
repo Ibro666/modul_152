@@ -2,11 +2,17 @@
     // session_start();
     $_SESSION["expiration"] = time() + 3600;
 
-    $likeCount = 0;
-
     require "model/database.php";
     require_once "model/Posts.php";
     require_once "model/Like.php";
+
+    $likeCount = 0;
+    $licenseUrl = "";
+    $licensIconA = "";
+    $licensIconB = "";
+    $licensIconC = "";
+    $licensIcon = "";
+
 
     try {
         $table = new Posts("posts");
@@ -32,6 +38,32 @@
             } else {
                 $comments = "";
             }
+
+            if ($value["licence"] == "c") {
+                $licenseUrl = "";
+                $licensIcon = "&copy;";
+            } elseif ($value["licence"] == "cc-by") {
+                $licenseUrl = "https://creativecommons.org/licenses/by/4.0/deed.de";
+                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">';
+            } elseif ($value["licence"] == "cc-by-sa") {
+                $licenseUrl = "https://creativecommons.org/licenses/by-sa/4.0/deed.de";
+                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">-<img src="../resources/icons/sa.svg">';
+            } elseif ($value["licence"] == "cc-by-nc") {
+                $licenseUrl = "https://creativecommons.org/licenses/by-nc/4.0/deed.de";
+                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">-<img src="../resources/icons/nc.svg">';
+            } elseif ($value["licence"] == "cc-by-nc-sa") {
+                $licenseUrl = "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de";
+                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">-<img src="../resources/icons/nc.svg">-<img src="../resources/icons/sa.svg">';
+            } elseif ($value["licence"] == "cc-by-nd") {
+                $licenseUrl = "https://creativecommons.org/licenses/by-nd/4.0/deed.de";
+                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">-<img src="../resources/icons/nd.svg">';
+            } elseif ($value["licence"] == "cc-by-nc-nd") {
+                $licenseUrl = "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.de";
+                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">-<img src="../resources/icons/nc.svg">-<img src="../resources/icons/nd.svg">';
+            } elseif ($value["licence"] == "cc0") {
+                $licenseUrl = "https://creativecommons.org/publicdomain/zero/1.0/deed.de";
+                $licensIcon = "../resources/icons/pd.svg";
+            }
             
             // das post-content wird gestaltet und zusammen mit dem likes und comments ausgegeben.
             if ($value["thumbnail"] == "0") {
@@ -48,11 +80,10 @@
                     echo	'</div>';
                 }
                 echo	'<div class="metadata">';
-                echo		'<p>license</p>';
-                echo		'<p>autor</p>';
+                echo	    '<p><a href="' . $licenseUrl . '">' . $licensIcon . '</a> ' . $value["autor"] . '</p>';
                 echo	'</div>';
                 echo	'<div class="date">';
-                echo		'<p>date</p>';
+                echo		'<p>' . $value["date"] . '</p>';
                 echo	'</div>';
                 echo '</div>';
                 if (isset($_SESSION["username"])) {
@@ -80,7 +111,10 @@
                     echo	'</div>';
                 }
                 echo	'<div class="metadata">';
-                echo		'<p>autor</p>';
+                echo		'<p><a href="' . $licenseUrl . '">' . $licensIcon . '</a> ' . $value["autor"] . '</p>';
+                echo	'</div>';
+                echo	'<div class="date">';
+                echo		'<p>' . $value["date"] . '</p>';
                 echo	'</div>';
                 echo '</div>';
                 if (isset($_SESSION["username"])) {
@@ -110,7 +144,10 @@
                     echo	'</div>';
                 }
                 echo	'<div class="metadata">';
-                echo		'<p>autor</p>';
+                echo		'<p><a href="' . $licenseUrl . '">' . $licensIcon . '</a> ' . $value["autor"] . '</p>';
+                echo	'</div>';
+                echo	'<div class="date">';
+                echo		'<p>' . $value["date"] . '</p>';
                 echo	'</div>';
                 echo '</div>';
                 if (isset($_SESSION["username"])) {

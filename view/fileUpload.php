@@ -55,12 +55,13 @@
                         <div class="licenses-dropdown">
                             <select name="licences" id="licences" form="file-upload" required>
                                 <option selected disabled>Lizenz wählen</option>
-                                <option value="copyright">&copy;</option>
-                                <option value="cc">CC</option>
-                                <option value="by">BY</option>
-                                <option value="nc">NC</option>
-                                <option value="no">NO</option>
-                                <option value="sa">SA</option>
+                                <option value="c">&copy;</option>
+                                <option value="cc-by">CC BY</option>
+                                <option value="cc-by-sa">CC BY-SA</option>
+                                <option value="cc-by-nc">CC BY-NC</option>
+                                <option value="cc-by-nc-sa">CC BY-NC-SA</option>
+                                <option value="cc-by-nd">CC BY-ND</option>
+                                <option value="cc-by-nc-nd">CC BY-NC-ND</option>
                                 <option value="cc0">Public Domain</option>
                             </select>
                             <div>

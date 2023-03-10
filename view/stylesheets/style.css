@@ -242,9 +242,20 @@ form .link-field {
     margin: 1%;
 }
 
-img { 
-    max-width: 80%;
+.metadata img {
+    width: 5%;
+    position: relative;
+    top: 16%;
 }
+
+.metadata p {
+    position: relative;
+    bottom: 14%;
+}
+
+/* img { 
+    max-width: 80%;
+} */
 
 @media screen and (max-width: 600px) {
     iframe {
@@ -366,8 +377,12 @@ img {
     padding: 1%;
 }
 
-select {
+.licenses-dropdown select {
     font-size: 20px;
+    font-family: Helvetica,
+                 Arial,
+                 sans-serif,
+                 CCSymbols;
 }
 
 .url-field {
@@ -375,7 +390,7 @@ select {
 }
 
 /* .license-row {
-    display: grid;
+    display: grid;font-family: CCSymoles;
     grid-template-columns: repeat(1, 2fr 1fr);
     margin: 1;
 }
