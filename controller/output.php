@@ -8,9 +8,6 @@
 
     $likeCount = 0;
     $licenseUrl = "";
-    $licensIconA = "";
-    $licensIconB = "";
-    $licensIconC = "";
     $licensIcon = "";
 
 
@@ -44,31 +41,31 @@
                 $licensIcon = "&copy;";
             } elseif ($value["licence"] == "cc-by") {
                 $licenseUrl = "https://creativecommons.org/licenses/by/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">';
+                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg">';
             } elseif ($value["licence"] == "cc-by-sa") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-sa/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">-<img src="../resources/icons/sa.svg">';
+                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/sa.svg">';
             } elseif ($value["licence"] == "cc-by-nc") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nc/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">-<img src="../resources/icons/nc.svg">';
+                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nc.svg">';
             } elseif ($value["licence"] == "cc-by-nc-sa") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">-<img src="../resources/icons/nc.svg">-<img src="../resources/icons/sa.svg">';
+                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nc.svg"><img src="../resources/icons/sa.svg">';
             } elseif ($value["licence"] == "cc-by-nd") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nd/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">-<img src="../resources/icons/nd.svg">';
+                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nd.svg">';
             } elseif ($value["licence"] == "cc-by-nc-nd") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"> <img src="../resources/icons/by.svg">-<img src="../resources/icons/nc.svg">-<img src="../resources/icons/nd.svg">';
+                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nc.svg"><img src="../resources/icons/nd.svg">';
             } elseif ($value["licence"] == "cc0") {
                 $licenseUrl = "https://creativecommons.org/publicdomain/zero/1.0/deed.de";
                 $licensIcon = "../resources/icons/pd.svg";
             }
             
             // das post-content wird gestaltet und zusammen mit dem likes und comments ausgegeben.
-            if ($value["thumbnail"] == "0") {
+            if ($value["thumbnail"] == "0.svg") {
                 echo '<div class="move-content">';
-			    echo    '<video src="' . $value["path"] . '" controls></video>';
+			    echo    '<video src="' . $value["path"] . '" controls><img src="../resources/icons/0.svg" loading=lazy></video>';
 		        echo '</div>';
 
                 echo '<div class="post-data">';
@@ -97,9 +94,9 @@
                     echo    '</form>';
                     echo '</div>';
                 }
-            } elseif ($value["thumbnail"] == "1") {
+            } elseif ($value["thumbnail"] == "1.svg") {
                 echo '<div class="audio-content">';
-			    echo    '<audio src="' . $value["path"] . '" controls></audio>';
+			    echo    '<audio src="' . $value["path"] . '" controls loading=lazy></audio>';
 		        echo '</div>';
 
                 echo '<div class="post-data">';
@@ -165,7 +162,7 @@
         }
 
     } catch (Exception $exception) {
-        $error = "<p>Bei der Verbindung ist ein Fehler aufgetretten, melden Sie sich bei der Support!</p>";
+        echo "<p>Bei der Verbindung ist ein Fehler aufgetretten, melden Sie sich bei der Support!</p> " . $exception->getMessage();
         $dbconnect->rollBack();
         die();
     }

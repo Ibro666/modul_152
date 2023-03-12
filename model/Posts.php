@@ -11,7 +11,7 @@
             // $data = "";
 
             $dbconnect->beginTransaction();
-            $query = "SELECT * FROM " . $this->tableName;
+            $query = "SELECT * FROM " . $this->tableName . " ORDER BY post_id DESC";
             $result = $dbconnect->prepare($query);
             $result->execute();
 
@@ -47,7 +47,7 @@
             $data = null;
 
             $dbconnect->beginTransaction();
-            $query = "SELECT description FROM posts INNER JOIN comments AS c ON posts.post_id = c.post_id WHERE c.post_id=" . $postId;
+            $query = "SELECT description FROM posts INNER JOIN comments AS c ON posts.post_id = c.post_id WHERE c.post_id=" . $postId . " ORDER BY posts.post_id DESC";
             $result = $dbconnect->prepare($query);
             $result->execute();
 

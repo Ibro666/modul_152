@@ -21,6 +21,7 @@
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" type="text/css" href="view/stylesheets/style.css">
+    <script src="../controller/lazy-loader.js"></script>
     <title>File-Upload</title>
 </head>
 <header>

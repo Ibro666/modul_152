@@ -48,14 +48,8 @@
 					<?php require "controller/galleryController.php" ?>
 				</div>
 			</div>
-			<div class="title-blog-container">
-				<figure>
-					<picture>
-						<source srcset="" media="">
-						<img src="Model\bilder\Politik.svg" alt="" title="Politok" loading="lazy">
-						<figcaption></figcaption>
-					</picture>
-				</figure>
+			<div class="title-blog-container" id="title-blog-container">
+				
 			</div>
    		</div>
 		<div class="content">
@@ -63,6 +57,6 @@
 		</div>
 		<a href="#header">zum Anfang</a>
 	</div>
-	<script src="../controller/lightbox.js"></script>
+	<script src="controller/lightbox.js"></script>
 </body>
 </html>

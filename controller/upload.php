@@ -51,7 +51,7 @@
         }
 
         $path = "resources/uploads/videos/";
-        $thmubPath = "0";
+        $thmubPath = "0.svg";
     }
 
     if ($imageType == "audio/mp3" || $imageType == "audio/wav" || $imageType == "audio/mpeg") {
@@ -61,7 +61,7 @@
         }
 
         $path = "resources/uploads/audios/";
-        $thmubPath = "1";
+        $thmubPath = "1.svg";
     }
     // image in den vorgesehenen verzeichnis verschieben
     // move_uploaded_file($fileInformation["tmp_name"], "../uploads/" . microtime());
@@ -107,11 +107,9 @@
     $thmubPath = "resources/uploads/thumbnails/" . $destinationFile;
     }
 
-    if ($_POST["licences"] == "by") {
-        if (!isset($_POST["autor"])) {
-            $error = "<p>Bitte den Autor angeben!</p>";
-            return;
-        }
+    if (!isset($_POST["licences"])) {
+        $error = "<p>Bitte ein Lizenz angeben!</p>";
+        return;
     }
    
     // die pfäder der gespeicherten medien in die datenbank eintragen
