@@ -20,7 +20,6 @@
 	<meta name="msapplication-TileColor" content="#2d89ef">
 	<meta name="theme-color" content="#ffffff">
 	<link rel="stylesheet" type="text/css" href="view/stylesheets/style.css">
-	<script src="controller/lazy-loader.js"></script>
 </head>
 <header>
 	<div id="error-messages">
@@ -28,18 +27,29 @@
 	</div>
 </header>
 <body>
+	<div class="response-nav-container"></div>
 	<nav>
-		<ul>
-			<li><a href="index.php" class="active">Home</a></li>
-			<li class="dropdown"><a href="fileUpload.php">Posten</a></li>
-			<li class="dropdown"><a href="gallery.php">Gallerie</a></li>
-			<li><a href="#">Über Uns</a></li>
-			<li class="dropdown-right-btns"><?php echo $loginBtn?>
+		<div class="nav-container">
+			<div class="logo">
+				<a href="index.php"><img src="resources/logo/ppm-logo.png"></a>
+			</div>
+			<div class="menu">
+				<div class="item-1"><a href="index.php" class="active">Home</a></div>
+				<div class="dropdown"><a href="fileUpload.php">Posten</a></div>
+				<div class="dropdown"><a href="gallery.php">Gallerie</a></div>
+				<div class="item-4"><a href="#">ÜberUns</a></div>
+				<div class="dropdown-right-btns item-5"><?php echo $loginBtn?>
 				<div class="dropdown-content">
 					<a href="#">Profil</a>
-				</div>
-			</li>
-		</ul>
+				</div></div>
+			</div>
+			<div class="nav-list">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
 	</nav>
 	<div class="container-content">
 		<div class="content">
@@ -53,5 +63,7 @@
 	<footer>
 		
 	</footer>
+	<script src="controller/lazy-loader.js"></script>
+	<script src="controller/nav-animation.js"></script>
 </body>
 </html>

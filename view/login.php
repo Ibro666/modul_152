@@ -28,7 +28,6 @@
 </header>
 <body>
     <div class="column">
-        <!--<div class="window-left-part"></div>-->
         <div class="window-middle-part">
             <div class="title-login"><h1>Anmeldung</h1></div>
             <form method="POST">
@@ -49,7 +48,6 @@
                 </div>
             </form>
         </div>
-        <!--<div class="window-right-part"></div>-->
     </div>
 </body>
 </html>

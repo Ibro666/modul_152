@@ -30,19 +30,6 @@
     </div>
 </header>
 <body>
-    <nav>
-		<ul>
-			<li><a href="index.php" class="active">Home</a></li>
-			<li class="dropdown"><a href="fileUpload.php">Posten</a></li>
-			<li class="dropdown"><a href="gallery.php">Gallerie</a></li>
-			<li><a href="#">Über Uns</a></li>
-			<li class="dropdown-right-btns"><?php echo $loginBtn?>
-				<div class="dropdown-content">
-					<a href="#">Profil</a>
-				</div>
-			</li>
-		</ul>
-	</nav>
     <div class="column">
         <div class="window-middle-part">
             <div class="title-login"><h1>File-Upload</h1></div>

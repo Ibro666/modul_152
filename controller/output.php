@@ -30,14 +30,14 @@
             // solange datenbank kommentare beinhaltet werden sie ausgegeben
             if (!empty($commentArray)) {
                 foreach ($commentArray as $key => $arraValue) {
-                    $comments =  '<p>' . $arraValue . '</p>';
+                    $comments = '<div class="coment-message"><p>' . $arraValue . '</p></div>';
                 }
             } else {
                 $comments = "";
             }
 
             if ($value["licence"] == "c") {
-                $licenseUrl = "";
+                $licenseUrl = "https://de.wikipedia.org/wiki/Urheberrecht";
                 $licensIcon = "&copy;";
             } elseif ($value["licence"] == "cc-by") {
                 $licenseUrl = "https://creativecommons.org/licenses/by/4.0/deed.de";
@@ -65,7 +65,7 @@
             // das post-content wird gestaltet und zusammen mit dem likes und comments ausgegeben.
             if ($value["thumbnail"] == "0.svg") {
                 echo '<div class="move-content">';
-			    echo    '<video src="' . $value["path"] . '" controls><img src="../resources/icons/0.svg" loading=lazy></video>';
+			    echo    '<video class="lazy-load" data-src="' . $value["path"] . '" controls><img src="../resources/icons/0.svg" loading=lazy></video>';
 		        echo '</div>';
 
                 echo '<div class="post-data">';
@@ -85,18 +85,16 @@
                 echo '</div>';
                 if (isset($_SESSION["username"])) {
                     echo '<div class="coment-content">';
-                    echo    '<form method="GET" action="commentController.php">';
+                    echo    $comments;
+                    echo    '<form class="comment-form" method="GET" action="commentController.php">';
                     echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar"></textarea>';
-                    echo        '<div>';
-                    echo            $comments;
-                    echo        '</div>';
                     echo	    '<button type="submit" name="post-comment" value="' . $value["post_id"] . '">Senden</button>';
                     echo    '</form>';
                     echo '</div>';
                 }
             } elseif ($value["thumbnail"] == "1.svg") {
                 echo '<div class="audio-content">';
-			    echo    '<audio src="' . $value["path"] . '" controls loading=lazy></audio>';
+			    echo    '<audio class="lazy-load" data-src="' . $value["path"] . '" controls loading=lazy></audio>';
 		        echo '</div>';
 
                 echo '<div class="post-data">';
@@ -116,11 +114,9 @@
                 echo '</div>';
                 if (isset($_SESSION["username"])) {
                     echo '<div class="coment-content">';
-                    echo    '<form method="GET" action="commentController.php">';
+                    echo    $comments;
+                    echo    '<form class="comment-form" method="GET" action="commentController.php">';
                     echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar"></textarea>';
-                    echo        '<div>';
-                    echo            $comments;
-                    echo        '</div>';
                     echo	    '<button type="submit" name="post-comment" value="' . $value["post_id"] . '">Senden</button>';
                     echo    '</form>';
                     echo '</div>';
@@ -129,7 +125,7 @@
                 echo '<div class="picture-content">';
                 echo	'<picture>';
                 echo		'<source srcset="' . $value["path"] . '" media="(max-width: 800px)">';
-                echo		'<img src="' . $value["path"] . '" loading="lazy" onload="loadFullImage(event);">';
+                echo		'<img class="lazy-load" data-src="' . $value["path"] . '" loading="lazy">';
                 echo	'</picture>';
                 echo '</div>';
                 echo '<div class="post-data">';
@@ -149,11 +145,9 @@
                 echo '</div>';
                 if (isset($_SESSION["username"])) {
                     echo '<div class="coment-content">';
-                    echo    '<form method="GET" action="commentController.php">';
+                    echo    $comments;
+                    echo    '<form class="comment-form" method="GET" action="commentController.php">';
                     echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar"></textarea>';
-                    echo        '<div>';
-                    echo            $comments;
-                    echo        '</div>';
                     echo	    '<button type="submit" name="post-comment" value="' . $value["post_id"] . '">Senden</button>';
                     echo    '</form>';
                     echo '</div>';

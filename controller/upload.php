@@ -98,12 +98,16 @@
     // }
     // ob_end_flush();
 
-    imagepng($scaledImage, "resources/uploads/thumbnails/" . $destinationFile, 0);
+    // imagepng($scaledImage, "resources/uploads/thumbnails/" . $destinationFile, 0);
     // if (filesize('test_img.webp') % 2 == 1) {
     //     file_put_contents('test_img.webp', "\0", FILE_APPEND);
     // }
 
-    // imagewebp($image, "resources/uploads/compresions/" . $destinationFile, 0);
+    imagepalettetotruecolor($image);
+    imagealphablending($image, true);
+    imagesavealpha($image, true);
+print_r($image);
+    imagewebp($image, "resources/uploads/compresions/" . $destinationFile, 0);
     $thmubPath = "resources/uploads/thumbnails/" . $destinationFile;
     }
 
