@@ -34,7 +34,7 @@ function showImage(image) {
 const commentForm = "comment-form";
 if (document.querySelector(`.${commentForm}`) != null) {
     const commentContent = document.querySelector(`.${commentForm}`);
-
+    
     textarea = commentContent.children[0];
 
     // nach ein tippen soll der feld vergrössert werden
@@ -42,5 +42,5 @@ if (document.querySelector(`.${commentForm}`) != null) {
         textarea.style.height = "20px";
         let up = e.target.scrollHeight;
         textarea.style.height = `${up}px`;
-    });   
+    });    
 }

@@ -18,6 +18,6 @@
         return;
     }
 
-    require_once "../model/authenticate.php";
+    require_once "model/authenticate.php";
 
     require "view-controller.php";

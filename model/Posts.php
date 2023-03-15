@@ -24,12 +24,30 @@
             return $data;
         }
 
+        public function selectOwner($userId) {
+            global $dbconnect;
+            $data = "";
+
+            $dbconnect->beginTransaction();
+            $query = "SELECT username FROM users WHERE user_id=" . $userId;
+            $result = $dbconnect->prepare($query);
+            $result->execute();
+
+            $indexIgnor = $result->setFetchMode(PDO::FETCH_ASSOC);
+            foreach ($result as $value) {
+                $data = $value;
+            }
+
+            $dbconnect->commit();
+            return $data;
+        }
+
         public function selectLikeCount($postId) {
             global $dbconnect;
             $data = null;
 
             $dbconnect->beginTransaction();
-            $query = "SELECT count(user_id) FROM posts INNER JOIN likes ON posts.post_id = likes.post_id WHERE posts.post_id=" . $postId;
+            $query = "SELECT count(user_id) FROM likes WHERE post_id=" . $postId;
             $result = $dbconnect->prepare($query);
             $result->execute();
 
@@ -60,11 +78,11 @@
             return $data;
         }
 
-        public function insert($name, $thumbnail, $path, $licence, $autor, $url, $date) {
+        public function insert($name, $thumbnail, $path, $licence, $autor, $url, $date, $userId) {
             global $dbconnect;
 
             $dbconnect->beginTransaction();
-            $query = "INSERT INTO " . $this->tableName . "(name, thumbnail, path, licence, autor, url, date) VALUES(?,?,?,?,?,?,?)";
+            $query = "INSERT INTO " . $this->tableName . "(name, thumbnail, path, licence, autor, url, date, user_id) VALUES(?,?,?,?,?,?,?,?)";
             $statement = $dbconnect->prepare($query);
 
             $statement->bindParam(1, $name, PDO::PARAM_STR);
@@ -74,6 +92,7 @@
             $statement->bindParam(5, $autor, PDO::PARAM_STR);
             $statement->bindParam(6, $url, PDO::PARAM_STR);
             $statement->bindParam(7, $date, PDO::PARAM_STR);
+            $statement->bindParam(8, $userId, PDO::PARAM_INT);
             $statement->execute();
 
             $dbconnect->commit();

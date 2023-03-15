@@ -37,11 +37,8 @@
 				<div class="item-1"><a href="index.php" class="active">Home</a></div>
 				<div class="dropdown"><a href="fileUpload.php">Posten</a></div>
 				<div class="dropdown"><a href="gallery.php">Gallerie</a></div>
-				<div class="item-4"><a href="#">ÜberUns</a></div>
-				<div class="dropdown-right-btns item-5"><?php echo $loginBtn?>
-				<div class="dropdown-content">
-					<a href="#">Profil</a>
-				</div></div>
+				<div class="item-4"><a href="about.php">ÜberUns</a></div>
+				<div class="dropdown-right-btns item-5"><?php echo $loginBtn?></div>
 			</div>
 			<div class="nav-list">
 				<span></span>
@@ -54,8 +51,6 @@
 	<div class="container-content">
 		<div class="content">
 			<h1>PinPostMedia</h1>
-			<div class="post-content">
-			</div>
 				<?php require "controller/output.php"?>
 		</div>
 		<a href="#header">zum Anfang</a>

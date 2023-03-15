@@ -8,6 +8,10 @@ body {
     height: 100vh;
 }
 
+h1 {
+    font-size: 36px;
+}
+
 /* error meldungen */
 header {
     text-align: center;
@@ -16,7 +20,14 @@ header {
 header p {
     font-size: 24px;
     color: black;
+    background-color: rgb(255, 241, 71);
+    padding: 1%;
+    border-radius: 15px;
+}
 
+.error {
+    font-size: 24px;
+    color: black;
     background-color: rgb(255, 241, 71);
     padding: 1%;
     border-radius: 15px;
@@ -25,6 +36,18 @@ header p {
 input {
     border: 3px solid;
     border-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    box-shadow: 15px 15px 7px rgb(43, 42, 42, 0.6);
+}
+
+button {
+    font-size: 24px;
+    border-radius: 8px;
+    box-shadow: 7px 10px 7px rgb(43, 42, 42, 0.6);
+}
+
+button:active {
+    box-shadow: 2px 2px 3px rgb(43, 42, 42, 0.6);
 }
 
 input:hover, input:focus {
@@ -135,8 +158,13 @@ nav {
     font-size: 24px;
 }
 
-.menu a.active, .menu a:hover {
-    background-color: #fff;
+.menu a.active {
+    color: #fff;
+}
+
+.menu a:hover {
+    color: #fff;
+    text-shadow: 10px 10px 5px rgba(0, 0, 0, 0.7);
 }
 
 .item-5 {
@@ -156,7 +184,7 @@ nav .logo {
 nav .dropdown-content {
     display: none;
     position: relative;
-    top: 65%;
+    top: 55%;
     text-decoration: none;
     text-align: end;
 
@@ -230,7 +258,6 @@ nav .dropdown-right-btns:hover .dropdown-content {
 
 .title-login {
     display: block;
-    font-size: 24px;
 }
 
 .window-middle-part form {
@@ -322,6 +349,13 @@ form .link-field {
     gap: 2px;
 }
 
+.post-owner {
+    font-style: italic;
+    font-weight: bold;
+    max-width: 30%;
+    margin: 1%;
+}
+
 .post-content {
     height: 25%;
     margin: 1%;
@@ -396,6 +430,7 @@ form .link-field {
     border-radius: 8px;
     border-color: rgba(0, 0, 0, 0.3);
     max-height: 60px;
+    box-shadow: 10px 10px 7px rgb(43, 42, 42, 0.6);
 }
 
 .coment-content textarea:hover, .coment-content textarea:focus {
@@ -460,12 +495,7 @@ form .link-field {
 
 /* registration */
 .display-container {
-    display: inline-block;
-    width: 70%;
-    height: 60%;
-    position: relative;
-    left: 15%;
-    top: 20%;
+    height: 100vh;
     text-align: center;
 }
 
@@ -480,47 +510,41 @@ form .link-field {
     padding: 5%;
 }
 
-.display-content h1 {
-    position: relative;
-    left: 3%;
-}
-
 .display-content form {
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .display-content label {
-    font-size: 20px;
-    margin-left: 5%;
-    margin-right: 5%;
-    display: inline-block;
-    width: 25%;
+    font-size: 18px;
+    margin: 2%;
+    display: flex;
 }
 
 .display-content input {
     font-size: 20px;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    padding: 0.5%;
-    width: 50%;        margin: 1%;
-    padding: 0.4%;
-    border: none;
-    background-color: rgb(247, 180, 117, 0.8);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    border-radius: 8px;
-    box-shadow: 15px 15px 7px rgb(43, 42, 42, 0.548);
+    padding: 2%;
+    margin: 1%;
+}
+
+.button-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .display-content button {
-    position: relative;
-    left: 34%;
-    margin: 2%;
-    width: 25%;
-    height: 10%;
-    font-size: 24px;
-    padding: 0.5%;
+    margin: 3%;
+    width: 51%;
+    padding: 1%;
 }
 
 .out-message {
@@ -528,9 +552,6 @@ form .link-field {
     border-radius: 8px;
     font-size: 28px;
     text-align: center;
-    position: relative;
-    left: 28%;
-    width: 50%;
 }
 
 /* gallery */
@@ -618,12 +639,17 @@ form .link-field {
 
 
 @media(min-width: 600px) {
+    button {
+        box-shadow: 10px 10px 7px rgb(43, 42, 42, 0.6);
+    }
+
     .nav-list {
         display: none;
     }
 
     .menu {
         display: flex;
+        max-height: 29px;
     }
 
     .like-btn {
@@ -697,5 +723,44 @@ form .link-field {
     .window-middle-part {
         height: 60%;
         width: 25%;
+    }
+
+    .display-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .display-content {
+        width: 65%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .display-content form {
+        width: 70%;
+    }
+
+    .input-field {
+        flex-direction: row;
+        max-height: 12%;
+    }
+    
+    .display-content label {
+        margin: 2%;
+        flex: 33%;
+    }
+
+    .display-content input {
+        flex: 70%;
+    }
+
+    .button-controls {
+        flex-direction: row;
+        justify-content: right;
     }
 }

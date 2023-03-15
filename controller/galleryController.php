@@ -17,25 +17,25 @@
                 $licensIcon = "&copy;";
             } elseif ($value["licence"] == "cc-by") {
                 $licenseUrl = "https://creativecommons.org/licenses/by/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg">';
             } elseif ($value["licence"] == "cc-by-sa") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-sa/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/sa.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg"><img src="resources/icons/sa.svg">';
             } elseif ($value["licence"] == "cc-by-nc") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nc/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nc.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg"><img src="resources/icons/nc.svg">';
             } elseif ($value["licence"] == "cc-by-nc-sa") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nc.svg"><img src="../resources/icons/sa.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg"><img src="resources/icons/nc.svg"><img src="resources/icons/sa.svg">';
             } elseif ($value["licence"] == "cc-by-nd") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nd/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nd.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg"><img src="resources/icons/nd.svg">';
             } elseif ($value["licence"] == "cc-by-nc-nd") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nc.svg"><img src="../resources/icons/nd.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg"><img src="resources/icons/nc.svg"><img src="resources/icons/nd.svg">';
             } elseif ($value["licence"] == "cc0") {
                 $licenseUrl = "https://creativecommons.org/publicdomain/zero/1.0/deed.de";
-                $licensIcon = "../resources/icons/pd.svg";
+                $licensIcon = '<img src="resources/icons/pd.svg">';
             } 
 
             echo '<div class="gallery-item" onclick="showLightbox(' . $key . ');">';
@@ -69,7 +69,7 @@
         fclose($file);
 
     } catch (Exception $exception) {
-        $error = "<p>Bei der Verbindung ist ein Fehler aufgetretten, melden Sie sich bei der Support!</p>";
+        echo '<p class="error">Bei der Verbindung ist ein Fehler aufgetretten, melden Sie sich bei der Support!</p>';
         $dbconnect->rollBack();
         die();
     }

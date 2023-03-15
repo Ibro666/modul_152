@@ -3,7 +3,7 @@
     require_once "Table.php";
 
     if (!isset($_SESSION["expiration"]) || $_SESSION["expiration"] < time()) {
-        header("Location: ../index.php");
+        header("Location: index.php");
         die();
     }
     
@@ -21,12 +21,12 @@
         if (!password_verify($_POST["password"], $result["password"])) {
             $error = "<p>falsches Passwort eingegeben</p>";
             return;
-        } else {
-            $_SESSION["user_id"] = $result["user_id"];
-            header("Location: ../index.php");
         }
+
+        $_SESSION["user_id"] = $result["user_id"];
+        header("Location: ../index.php");
     } catch (Exception $exception) {
-        $error = "<p>Benutzername ist nicht registriert! " . $exception->getMessage() . "</p>";
+        echo '<p class="error">Benutzername ist nicht registriert! ' . $exception->getMessage() . '</p>';
         $dbconnect->rollBack();
         die();
     }

@@ -19,7 +19,7 @@
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" type="text/css" href="view/stylesheets/style.css">
-    <title>Galerie</title>
+    <title>about</title>
 </head>
 <header>
     <div id="error-messages">
@@ -50,16 +50,13 @@
 	</nav>
 	<div class="container-content">
 		<div class="content">
-			<h1>Galerie</h1>
-			<div class="post-content">
-				<div class="gallery-content">
-					<?php require "controller/galleryController.php" ?>
-				</div>
-			</div>
+			<h1>Über Uns</h1>
+            <h2>Medien in Webauftritt anbinden mit Storyboard</h2>
+            <h3>Modul_152</h3>
+            <p>Ein spannende Projektarbeit für den Modulabschluss!</p>
+            <p><i>Ibrohim Nasibov</i></p>
    		</div>
-		<a href="#header">zum Anfang</a>
 	</div>
-	<!-- <script src="../controller/lazy-loader.js"></script> -->
 	<script src="controller/lightbox.js"></script>
 	<script src="controller/nav-animation.js"></script>
 </body>

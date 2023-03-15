@@ -1,7 +1,7 @@
 <?php 
     $error = "";
 
-    require "../controller/login.php";
+    require "controller/login.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@
     <meta name="application-name" content="PinPostMedia">
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="view/stylesheets/style.css">
     <title>Login</title>
 </head>
 <header>
@@ -44,7 +44,7 @@
                     <button type="button" onclick="document.location='../controller/logout.php'">Abbrechen</button>
                 </div>
                 <div class="link-field">
-                    <a href="signup.php">registrieren</a>
+                    <a href="../signup.php">registrieren</a>
                 </div>
             </form>
         </div>

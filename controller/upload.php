@@ -1,13 +1,21 @@
 <?php
-    ini_set('display_errors', '1');
-    ini_set('display_startup_errors', '1');
-    error_reporting(E_ALL);
+    // ini_set('display_errors', '1');
+    // ini_set('display_startup_errors', '1');
+    // error_reporting(E_ALL);
+
+    session_start();
+    $_SESSION["expiration"] = time() + 3600;
 
     $path = "";
     $thmubPath = "";
 
     require "model/database.php";
     require_once "model/Posts.php";
+
+    if (!isset($_SESSION["username"])) {
+        header("Location: login.php");
+        return;
+    }
 
     if (!isset($_POST["submit"])) {
         return;
@@ -98,16 +106,16 @@
     // }
     // ob_end_flush();
 
-    // imagepng($scaledImage, "resources/uploads/thumbnails/" . $destinationFile, 0);
+    imagepng($scaledImage, "resources/uploads/thumbnails/" . $destinationFile, 0);
     // if (filesize('test_img.webp') % 2 == 1) {
     //     file_put_contents('test_img.webp', "\0", FILE_APPEND);
     // }
 
-    imagepalettetotruecolor($image);
-    imagealphablending($image, true);
-    imagesavealpha($image, true);
-print_r($image);
-    imagewebp($image, "resources/uploads/compresions/" . $destinationFile, 0);
+    // imagepalettetotruecolor($image);
+    // imagealphablending($image, true);
+    // imagesavealpha($image, true);
+
+    // imagewebp($image, "resources/uploads/compresions/" . $destinationFile, 0);
     $thmubPath = "resources/uploads/thumbnails/" . $destinationFile;
     }
 
@@ -115,13 +123,13 @@ print_r($image);
         $error = "<p>Bitte ein Lizenz angeben!</p>";
         return;
     }
-   
+    
     // die pfäder der gespeicherten medien in die datenbank eintragen
     try {
         $table = new Posts("posts");
-        $table->insert($destinationFile, $thmubPath, $path.$destinationFile, $_POST["licences"], $_POST["autor"], $_POST["url"], date("d.m.Y"));
+        $table->insert($destinationFile, $thmubPath, $path.$destinationFile, $_POST["licences"], $_POST["autor"], $_POST["url"], date("d.m.Y"), $_SESSION["user_id"]);
     } catch (Exception $exception) {
-        $error = "<p>Bei der Verbindung ist ein Fehler aufgetretten, melden Sie sich bei der Support! " . $exception->getMessage() . "</p>";
+        echo '<p class="error">Bei der Verbindung ist ein Fehler aufgetretten, melden Sie sich bei der Support! ' . $exception->getMessage() . '</p>';
         $dbconnect->rollBack();
         die();
     }

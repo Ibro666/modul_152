@@ -21,7 +21,7 @@
             global $dbconnect;
 
             $dbconnect->beginTransaction();
-            $query = "SELECT post_id FROM likes";
+            $query = "SELECT * FROM likes";
             $result = $dbconnect->prepare($query);
             $result->execute();
 

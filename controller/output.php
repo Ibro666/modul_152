@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    session_start();
     $_SESSION["expiration"] = time() + 3600;
 
     require "model/database.php";
@@ -9,7 +9,6 @@
     $likeCount = 0;
     $licenseUrl = "";
     $licensIcon = "";
-
 
     try {
         $table = new Posts("posts");
@@ -24,6 +23,15 @@
                 $likeCount = $postId;
             } 
 
+            // post ersteller ausgeben
+            $postOwner = $table->selectOwner($value["user_id"]);
+
+            if (!empty($postOwner)) {
+                $owner = $postOwner["username"];
+            } else {
+                $owner = "";
+            }
+   
             // kommentare zu den einzelnen posts aus geben
             $commentArray = $table->selectComments($value["post_id"]);
 
@@ -41,33 +49,33 @@
                 $licensIcon = "&copy;";
             } elseif ($value["licence"] == "cc-by") {
                 $licenseUrl = "https://creativecommons.org/licenses/by/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg">';
             } elseif ($value["licence"] == "cc-by-sa") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-sa/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/sa.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg"><img src="resources/icons/sa.svg">';
             } elseif ($value["licence"] == "cc-by-nc") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nc/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nc.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg"><img src="resources/icons/nc.svg">';
             } elseif ($value["licence"] == "cc-by-nc-sa") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nc.svg"><img src="../resources/icons/sa.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg"><img src="resources/icons/nc.svg"><img src="resources/icons/sa.svg">';
             } elseif ($value["licence"] == "cc-by-nd") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nd/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nd.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg"><img src="resources/icons/nd.svg">';
             } elseif ($value["licence"] == "cc-by-nc-nd") {
                 $licenseUrl = "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.de";
-                $licensIcon = '<img src="../resources/icons/cc.svg"><img src="../resources/icons/by.svg"><img src="../resources/icons/nc.svg"><img src="../resources/icons/nd.svg">';
+                $licensIcon = '<img src="resources/icons/cc.svg"><img src="resources/icons/by.svg"><img src="resources/icons/nc.svg"><img src="resources/icons/nd.svg">';
             } elseif ($value["licence"] == "cc0") {
                 $licenseUrl = "https://creativecommons.org/publicdomain/zero/1.0/deed.de";
-                $licensIcon = "../resources/icons/pd.svg";
+                $licensIcon = '<img src="resources/icons/pd.svg">';
             }
             
             // das post-content wird gestaltet und zusammen mit dem likes und comments ausgegeben.
             if ($value["thumbnail"] == "0.svg") {
                 echo '<div class="move-content">';
+                echo    '<div class="post-owner">' . $owner . '</div>';
 			    echo    '<video class="lazy-load" data-src="' . $value["path"] . '" controls><img src="../resources/icons/0.svg" loading=lazy></video>';
 		        echo '</div>';
-
                 echo '<div class="post-data">';
                 if (isset($_SESSION["username"])) {
                     echo	'<div class="like-btn">';
@@ -87,13 +95,14 @@
                     echo '<div class="coment-content">';
                     echo    $comments;
                     echo    '<form class="comment-form" method="GET" action="commentController.php">';
-                    echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar"></textarea>';
+                    echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar" required></textarea>';
                     echo	    '<button type="submit" name="post-comment" value="' . $value["post_id"] . '">Senden</button>';
                     echo    '</form>';
                     echo '</div>';
                 }
             } elseif ($value["thumbnail"] == "1.svg") {
                 echo '<div class="audio-content">';
+                echo    '<div class="post-owner">' . $owner . '</div>';
 			    echo    '<audio class="lazy-load" data-src="' . $value["path"] . '" controls loading=lazy></audio>';
 		        echo '</div>';
 
@@ -123,6 +132,7 @@
                 }
             } else {
                 echo '<div class="picture-content">';
+                echo    '<div class="post-owner">' . $owner . '</div>';
                 echo	'<picture>';
                 echo		'<source srcset="' . $value["path"] . '" media="(max-width: 800px)">';
                 echo		'<img class="lazy-load" data-src="' . $value["path"] . '" loading="lazy">';
@@ -147,7 +157,7 @@
                     echo '<div class="coment-content">';
                     echo    $comments;
                     echo    '<form class="comment-form" method="GET" action="commentController.php">';
-                    echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar"></textarea>';
+                    echo	    '<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Kommentar" required></textarea>';
                     echo	    '<button type="submit" name="post-comment" value="' . $value["post_id"] . '">Senden</button>';
                     echo    '</form>';
                     echo '</div>';
@@ -156,7 +166,7 @@
         }
 
     } catch (Exception $exception) {
-        echo "<p>Bei der Verbindung ist ein Fehler aufgetretten, melden Sie sich bei der Support!</p> " . $exception->getMessage();
+        echo '<p class="error">Bei der Verbindung ist ein Fehler aufgetretten, melden Sie sich bei der Support!</p>';
         $dbconnect->rollBack();
         die();
     }
