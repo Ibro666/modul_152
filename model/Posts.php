@@ -8,7 +8,6 @@
 
         public function select() {
             global $dbconnect;
-            // $data = "";
 
             $dbconnect->beginTransaction();
             $query = "SELECT * FROM " . $this->tableName . " ORDER BY post_id DESC";

@@ -1,10 +1,5 @@
 body {
-    /*hintergrund farbverlauf für einzelne browser definieren*/
     background-color: rgb(88, 150, 226, 0.6);
-    /* background: linear-gradient(120deg, rgba(216, 229, 245), rgb(88, 150, 226));
-    background: -moz-linear-gradient(120deg, rgba(216, 229, 245), rgb(88, 150, 226));
-    background: -o-linear-gradient(120deg, rgba(216, 229, 245), rgb(88, 150, 226));
-    background: -webkit-linear-gradient(120deg, rgba(216, 229, 245), rgb(88, 150, 226)); */
     height: 100vh;
 }
 
@@ -34,6 +29,7 @@ header p {
 }
 
 input {
+    font-size: 20px;
     border: 3px solid;
     border-color: rgba(0, 0, 0, 0.3);
     border-radius: 5px;
@@ -42,8 +38,11 @@ input {
 
 button {
     font-size: 24px;
-    border-radius: 8px;
+    border-radius: 4px;
     box-shadow: 7px 10px 7px rgb(43, 42, 42, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: rgb(255, 255, 255);
+    outline: none;
 }
 
 button:active {
@@ -115,12 +114,12 @@ nav {
 
 .nav-list:hover span:nth-child(2) {
     transform: translateX(10px);
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
 }
 
 .nav-list:hover span:nth-child(3) {
     transform: translateX(-10px);
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
 }
 
 .nav-list.active span:nth-child(1) {
@@ -137,7 +136,7 @@ nav {
 }
 
 .nav-list.active:hover span {
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
 }
 
 .menu {
@@ -159,12 +158,16 @@ nav {
 }
 
 .menu a.active {
-    color: #fff;
+    color: rgb(255, 255, 255);
 }
 
 .menu a:hover {
-    color: #fff;
+    color: rgb(255, 255, 255);
     text-shadow: 10px 10px 5px rgba(0, 0, 0, 0.7);
+}
+
+.menu a:active {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0);
 }
 
 .item-5 {
@@ -202,20 +205,20 @@ nav .dropdown-right-btns:hover .dropdown-content {
 
 .response-nav-container.active {
     display: block;
-    height: 100vh;
+    height: 98vh;
     border-radius: 10px;
     background-color:  rgb(247, 180, 117);
 }
 
 .response-nav-content {
-    height: 100vh;
+    height: 98vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.response-nav-container.active a {
+.response-nav-menu a {
     text-decoration: none;
     list-style-type: none;
 
@@ -225,6 +228,15 @@ nav .dropdown-right-btns:hover .dropdown-content {
     color: black;
 }
 
+.response-nav-menu a:hover {
+    color: rgb(255, 255, 255);
+    text-shadow: 10px 10px 5px rgba(0, 0, 0, 0.7);
+}
+
+.response-nav-menu a:active {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0);
+}
+
 .container-content.active {
     display: none;
 }
@@ -232,7 +244,7 @@ nav .dropdown-right-btns:hover .dropdown-content {
 /* loginpage */
 .column {
     display: flex;
-    height: 100vh;
+    height: 98vh;
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -288,12 +300,6 @@ form .button-field {
     border-radius: 8px;
 }
 
-.button-field button {
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    outline: none;
-}
-
 form .link-field {
     display: inline-block;
     margin-top: 15%;
@@ -317,9 +323,6 @@ form .link-field {
     width: 98%;
     height: 95%;
     text-align: center;
-    border-radius: 8px;
-    font-size: 20px;
-    box-shadow: 15px 15px 7px rgb(43, 42, 42, 0.548);
 }
 
 /* indexpage */
@@ -330,7 +333,6 @@ form .link-field {
     width: auto;
     margin: 0.5%;
     padding: 0.5%;
-    background-color: rgb(250, 255, 255);
     background: linear-gradient(145deg, rgb(250, 255, 255), rgb(156, 187, 224));
     box-shadow: 20px 20px 60px rgb(43, 42, 42, 0.548), -20px -20px 60px rgb(156, 187, 224);
     border-radius: 15px;
@@ -390,12 +392,9 @@ form .link-field {
     width: 100%;
     height: auto;
     font-size: 15px;
-    border-radius: 4px;
     margin: 1%;
     padding: 0.4%;
     border: none;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
     text-decoration: none;
 }
 
@@ -445,7 +444,7 @@ form .link-field {
 .coment-message {
     width: 79%;
     outline: none;
-    background-color: #ffffff48;
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     padding: 1%;
     margin-bottom: 1%;
@@ -457,7 +456,7 @@ form .link-field {
     margin: 1%;
     border: none;
     background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
+    color: rgba(255, 255, 255);
     text-decoration: none;
     border-radius: 4px;
 }
@@ -567,6 +566,10 @@ form .link-field {
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
 }
 
+.gallery-item img:active, .gallery-item img:active {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0);
+}
+
 .lightbox {
     display: none;
 }
@@ -603,8 +606,24 @@ form .link-field {
 }
 
 /* uploadpage */
-.file-input-field input {
-    background-color: rgb(250, 255, 255);
+.file-input-field input[type="file"] {
+    display: none;
+}
+
+.file-input-field label {
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: 10px 10px 7px rgb(43, 42, 42, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+    width: 98%;
+    height: 98%;
+}
+
+.file-input-field label:active {
+    box-shadow: 2px 2px 2px rgb(43, 42, 42);
 }
 
 .src-info-content {
@@ -625,7 +644,7 @@ form .link-field {
 .licenses-dropdown select {
     font-size: 20px;
     background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
+    color: rgb(255, 255, 255);
     border-radius: 8px;
 }
 
@@ -640,6 +659,7 @@ form .link-field {
 
 @media(min-width: 600px) {
     button {
+        border-radius: 8px;
         box-shadow: 10px 10px 7px rgb(43, 42, 42, 0.6);
     }
 
@@ -668,7 +688,6 @@ form .link-field {
         width: 80%;
         height: 80%;
         font-size: 24px;
-        border-radius: 8px;
     }
 
     .metadata a {

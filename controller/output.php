@@ -13,7 +13,7 @@
     try {
         $table = new Posts("posts");
         $result = $table->select();
-
+        
         // beim laden der hauptseite werden alle einträge aus dem datenbank gelesen
         foreach ($result as $key => $value) {
             // zu jedem post werden auch anzahl der likes geladen
@@ -164,7 +164,6 @@
                 }
             }
         }
-
     } catch (Exception $exception) {
         echo '<p class="error">Bei der Verbindung ist ein Fehler aufgetretten, melden Sie sich bei der Support!</p>';
         $dbconnect->rollBack();

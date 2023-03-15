@@ -35,8 +35,9 @@
             <div class="title-login"><h1>File-Upload</h1></div>
             <form method="POST" id="file-upload" enctype="multipart/form-data">
                 <div class="file-input-field">
+                    <label for="file">Datei einfügen</label>
                     <input type="hidden" name="MAX_FILE_SIZE" value="5000000"><!--Client seitige datei grössen limitierung-->
-                    <input type="file"  name="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm,audio/*" required><!--imagefileformat client seitig begrenzen-->
+                    <input type="file"  name="file" id="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm,audio/*" required><!--imagefileformat client seitig begrenzen-->
                 </div>
                 <div class="text-field">
                     <div class="src-info-content">

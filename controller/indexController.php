@@ -10,5 +10,3 @@
     } else {
         $loginBtn = '<a href="login.php" class="login-button">Anmelden</a>';
     }
-
-    
