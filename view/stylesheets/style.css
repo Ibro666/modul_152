@@ -45,6 +45,10 @@ button {
     outline: none;
 }
 
+button:hover {
+    background-color: rgba(88, 88, 88, 0.911);
+}
+
 button:active {
     box-shadow: 2px 2px 3px rgb(43, 42, 42, 0.6);
 }
