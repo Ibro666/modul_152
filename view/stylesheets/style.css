@@ -454,6 +454,11 @@ form .link-field {
     margin-bottom: 1%;
 }
 
+.coment-owner {
+    text-align: left;
+    font-style: italic;
+}
+
 .coment-content button {
     flex: 2%;
     font-size: 15px;

@@ -34,15 +34,16 @@
    
             // kommentare zu den einzelnen posts aus geben
             $commentArray = $table->selectComments($value["post_id"]);
-
+            
             // solange datenbank kommentare beinhaltet werden sie ausgegeben
             if (!empty($commentArray)) {
                 foreach ($commentArray as $key => $arraValue) {
-                    $comments = '<div class="coment-message"><p>' . $arraValue . '</p></div>';
+                    $comments = '<div class="coment-message"><div class="coment-owner">' . $arraValue["username"] . '</div><p>' . $arraValue["description"] . '</p></div>';
                 }
             } else {
                 $comments = "";
             }
+            
 
             if ($value["licence"] == "c") {
                 $licenseUrl = "https://de.wikipedia.org/wiki/Urheberrecht";

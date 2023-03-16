@@ -61,16 +61,15 @@
 
         public function selectComments($postId) {
             global $dbconnect;
-            $data = null;
 
             $dbconnect->beginTransaction();
-            $query = "SELECT description FROM posts INNER JOIN comments AS c ON posts.post_id = c.post_id WHERE c.post_id=" . $postId . " ORDER BY posts.post_id DESC";
+            $query = "SELECT description, username FROM posts AS p INNER JOIN comments AS c ON p.post_id = c.post_id INNER JOIN users AS u ON c.user_id = u.user_id WHERE c.post_id=" . $postId . " ORDER BY p.post_id DESC";
             $result = $dbconnect->prepare($query);
             $result->execute();
 
             $indexIgnor = $result->setFetchMode(PDO::FETCH_ASSOC);
             foreach ($result as $value) {
-                $data = $value;
+                $data[] = $value;
             }
 
             $dbconnect->commit();
