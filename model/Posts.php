@@ -22,7 +22,7 @@
             $dbconnect->commit();
             return $data;
         }
-
+       
         public function selectOwner($userId) {
             global $dbconnect;
             $data = "";
