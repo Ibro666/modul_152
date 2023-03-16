@@ -1,16 +1,33 @@
 <?php
     class Like {
-        public function select() {
+        public function selectCount($postId) {
             global $dbconnect;
 
             $dbconnect->beginTransaction();
-            $query = "SELECT count(id) FROM likes";
+            $query = "SELECT count(user_id) FROM likes WHERE post_id=' . $postId . '";
             $result = $dbconnect->prepare($query);
             $result->execute();
 
             $indexIgnor = $result->setFetchMode(PDO::FETCH_ASSOC);
             foreach ($result as $value) {
                 $data = $value;
+            }
+
+            $dbconnect->commit();
+            return $data;
+        }
+
+        public function select() {
+            global $dbconnect;
+
+            $dbconnect->beginTransaction();
+            $query = "SELECT * FROM likes";
+            $result = $dbconnect->prepare($query);
+            $result->execute();
+
+            $indexIgnor = $result->setFetchMode(PDO::FETCH_ASSOC);
+            foreach ($result as $value) {
+                $data[] = $value;
             }
 
             $dbconnect->commit();

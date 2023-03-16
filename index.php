@@ -1,8 +1,8 @@
 <?php 
 	$loginBtn = "";
+	$error = "";
 	
-	require "controller/view-controller.php";
-	require "controller/upload.php";
+	require "controller/indexController.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,57 +20,45 @@
 	<meta name="msapplication-TileColor" content="#2d89ef">
 	<meta name="theme-color" content="#ffffff">
 	<link rel="stylesheet" type="text/css" href="view/stylesheets/style.css">
-	<script src="controller/layz-loader.js"></script>
-	<header>
-		<div id="error-messages">
-			
-		</div>
-	</header>
 </head>
+<header>
+	<div id="error-messages">
+		<?php echo $error?>
+	</div>
+</header>
 <body>
+	<div class="response-nav-container"></div>
 	<nav>
-		<ul>
-			<li><a href="index.php" class="active">Home</a></li>
-			<li class="dropdown"><a href="#">Posten</a></li>
-			<li class="dropdown"><a href="#">Gallerie</a></li>
-			<li><a href="#">Über Uns</a></li>
-			<li class="dropdown-right-btns"><?php echo $loginBtn?>
-				<div class="dropdown-content">
-					<a href="#">Profil</a>
-				</div>
-			</li>
-		</ul>
+		<div class="nav-container">
+			<div class="logo">
+				<a href="index.php"><img src="resources/logo/ppm-logo.png"></a>
+			</div>
+			<div class="menu">
+				<div class="item-1"><a href="index.php" class="active">Home</a></div>
+				<div class="dropdown"><a href="fileUpload.php">Posten</a></div>
+				<div class="dropdown"><a href="gallery.php">Gallerie</a></div>
+				<div class="item-4"><a href="about.php">ÜberUns</a></div>
+				<div class="dropdown-right-btns item-5"><?php echo $loginBtn?></div>
+			</div>
+			<div class="nav-list">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
 	</nav>
 	<div class="container-content">
 		<div class="content">
-			<div class="post-content">
-				<form method="POST" enctype="multipart/form-data">
-					<input type="hidden" name="MAX_FILE_SIZE" value="5000000"><!--Client seitige datei grössen limitierung-->
-					<input type="file"  name="image" accept="image/png,image/jpeg,image/webp"><!--imagefileformat client seitig begrenzen-->
-					<button type="submit" name="submit">Upload</button>
-				</form>
-			</div>
-			<?php require "controller/output.php"?>
-			
-
-
-			<div class="title-blog-container">
-				<figure>
-					<picture>
-						<source srcset="" media="">
-						<img src="Model\bilder\Politik.svg" alt="" title="Politok" loading="lazy">
-						<figcaption></figcaption>
-					</picture>
-				</figure>
-			</div>
-   		</div>
-		<div class="content">
-			<video src="" controls></video>
+			<h1>PinPostMedia</h1>
+				<?php require "controller/output.php"?>
 		</div>
 		<a href="#header">zum Anfang</a>
 	</div>
 	<footer>
 		
 	</footer>
+	<script src="controller/lazy-loader.js"></script>
+	<script src="controller/nav-animation.js"></script>
 </body>
 </html>
